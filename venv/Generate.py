@@ -1,7 +1,6 @@
 import random
 def generate_cred(n):
     file1 =open(n,"r")
-
     database=[]
     for i in file1.readlines():
         lastname = i.split()[1]
@@ -11,10 +10,8 @@ def generate_cred(n):
             part1 = lastname
         initial = i[0]
         username = part1 + initial
-        counter = 0
-        if username not in database:
-            username = username
-        else:
+        counter = 1
+        while username in database:
             username = username + str(counter)
             counter = counter + 1
         database.append(username)
@@ -28,6 +25,7 @@ def generate_cred(n):
         file2 =open("ad","a")
         file2.writelines(output + "\n")
         file2.close()
+    file1.close()
     return;
 generate_cred("list1.txt")
-generate_cred("list2.txt")
+# generate_cred("list2.txt")
